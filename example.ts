@@ -1,11 +1,22 @@
 import { createAssistant, createMessage, createRun, createThread, listMessages, retrieveRun } from './src'
 import { EnvAPIKey } from './src/helpers/env'
+import { IRequest, Router, error, json } from 'itty-router'
 
 export default {
-  fetch: example,
+  fetch: (request: Request, env: EnvAPIKey, ctx: ExecutionContext) => router()
+    .handle(request, env, ctx)
+    .catch(error),
 }
 
-async function example(_, env: EnvAPIKey) {
+function router() {
+  const router = Router()
+  router.all('/ping', () => new Response('Pong!'))
+  router.all('/example', example)
+  router.all('*', () => error(404, 'Endpoint not exist.'))
+  return router
+}
+
+async function example(request: IRequest, env: EnvAPIKey) {
   console.debug('Example: Create an assistant, a thread, add a message, run the threads and get the response.')
   const assistant = await createAssistant(env, {
     name: "Math Tutor",
@@ -29,5 +40,5 @@ async function example(_, env: EnvAPIKey) {
   while (run.status !== 'completed') run = await retrieveRun(thread.id, run.id, env)
   console.debug(`Run completed.`)
   const messages = await listMessages(thread.id, env, {})
-  console.log(messages)
+  return json(messages)
 }
