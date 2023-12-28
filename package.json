@@ -22,7 +22,8 @@
   "homepage": "https://github.com/chiyoi/openai-requests#readme",
   "dependencies": {},
   "devDependencies": {
+    "openai": "^4.24.1",
     "typescript": "^5.3.3",
-    "openai": "^4.24.1"
+    "wrangler": "^3.22.1"
   }
 }

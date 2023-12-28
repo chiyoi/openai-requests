@@ -5,7 +5,7 @@ import { EnvAPIKey } from './helpers/env'
 import { withQuery } from './helpers/query'
 import { Pager } from './helpers/pager'
 
-export async function createMessage(thread_id: string, params: OpenAI.Beta.Threads.MessageCreateParams, env: EnvAPIKey) {
+export async function createMessage(thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.MessageCreateParams) {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/messages`
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -16,7 +16,7 @@ export async function createMessage(thread_id: string, params: OpenAI.Beta.Threa
   return await response.json() as OpenAI.Beta.Threads.ThreadMessage
 }
 
-export async function listMessages(thread_id: string, params: OpenAI.Beta.Threads.MessageListParams, env: EnvAPIKey) {
+export async function listMessages(thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.MessageListParams) {
   const endpoint = withQuery(`${OPENAI_API_ENDPOINT}/threads/${thread_id}/messages`, params)
   const response = await fetch(endpoint, { headers: standard(env) })
   if (!response.ok) throw new Error(`List Messages error: ${await response.text()}`)

@@ -3,7 +3,7 @@ import { OPENAI_API_ENDPOINT } from '.'
 import { EnvAPIKey } from './helpers/env'
 import { standard } from './helpers/headers'
 
-export async function createThread(params: OpenAI.Beta.ThreadCreateParams, env: EnvAPIKey) {
+export async function createThread(env: EnvAPIKey, params: OpenAI.Beta.ThreadCreateParams) {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads`
   const response = await fetch(endpoint, {
     method: 'POST',
