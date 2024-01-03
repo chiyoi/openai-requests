@@ -5,7 +5,7 @@ import { EnvAPIKey } from './helpers/env'
 import { Pager } from './helpers/pager'
 import { withQuery } from './helpers/query'
 
-export async function createRun(thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.RunCreateParams) {
+export const createRun = async (thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.RunCreateParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs`
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -16,14 +16,14 @@ export async function createRun(thread_id: string, env: EnvAPIKey, params: OpenA
   return await response.json() as OpenAI.Beta.Threads.Run
 }
 
-export async function listRunSteps(thread_id: string, run_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.Runs.StepListParams) {
+export const listRunSteps = async (thread_id: string, run_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.Runs.StepListParams) => {
   const endpoint = withQuery(`${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs/${run_id}/steps`, params)
   const response = await fetch(endpoint, { headers: standard(env) })
   if (!response.ok) throw new Error(`List Run Steps error: ${await response.text()}`)
   return await response.json() as Pager<OpenAI.Beta.Threads.Runs.Steps.RunStep>
 }
 
-export async function retrieveRun(thread_id: string, run_id: string, env: EnvAPIKey) {
+export const retrieveRun = async (thread_id: string, run_id: string, env: EnvAPIKey) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs/${run_id}`
   const response = await fetch(endpoint, {
     headers: {
@@ -35,7 +35,7 @@ export async function retrieveRun(thread_id: string, run_id: string, env: EnvAPI
   return await response.json() as OpenAI.Beta.Threads.Run
 }
 
-export async function submitToolOutputsToRun(thread_id: string, run_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.Runs.RunSubmitToolOutputsParams) {
+export const submitToolOutputsToRun = async (thread_id: string, run_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.Runs.RunSubmitToolOutputsParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs/${run_id}/submit_tool_outputs`
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -46,7 +46,7 @@ export async function submitToolOutputsToRun(thread_id: string, run_id: string, 
   return await response.json() as OpenAI.Beta.Threads.Run
 }
 
-export async function cancelRun(thread_id: string, run_id: string, env: EnvAPIKey) {
+export const cancelRun = async (thread_id: string, run_id: string, env: EnvAPIKey) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs/${run_id}/cancel`
   const response = await fetch(endpoint, {
     method: 'POST',

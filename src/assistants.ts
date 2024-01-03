@@ -3,7 +3,7 @@ import { OPENAI_API_ENDPOINT } from '.'
 import { EnvAPIKey } from './helpers/env'
 import { standard } from './helpers/headers'
 
-export async function createAssistant(env: EnvAPIKey, params: OpenAI.Beta.AssistantCreateParams) {
+export const createAssistant = async (env: EnvAPIKey, params: OpenAI.Beta.AssistantCreateParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/assistants`
   const response = await fetch(endpoint, {
     method: 'POST',
