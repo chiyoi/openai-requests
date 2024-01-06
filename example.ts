@@ -1,5 +1,5 @@
 import { createAssistant, createMessage, createRun, createThread, listMessages, retrieveRun } from './src'
-import { EnvAPIKey } from './src/helpers/env'
+import { EnvAPIKey } from './src/internal/env'
 import { IRequest, Router, error, json } from 'itty-router'
 
 export default {

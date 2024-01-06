@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 import { OPENAI_API_ENDPOINT } from '.'
-import { EnvAPIKey } from './helpers/env'
-import { standard } from './helpers/headers'
+import { EnvAPIKey } from './internal/env'
+import { standard } from './internal/headers'
 
 export const createThread = async (env: EnvAPIKey, params: OpenAI.Beta.ThreadCreateParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads`

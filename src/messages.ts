@@ -1,9 +1,9 @@
 import OpenAI from 'openai'
 import { OPENAI_API_ENDPOINT } from '.'
-import { standard } from './helpers/headers'
-import { EnvAPIKey } from './helpers/env'
-import { withQuery } from './helpers/query'
-import { Pager } from './helpers/pager'
+import { standard } from './internal/headers'
+import { EnvAPIKey } from './internal/env'
+import { withQuery } from './internal/query'
+import { Pager } from './internal/pager'
 
 export const createMessage = async (thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.MessageCreateParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/messages`

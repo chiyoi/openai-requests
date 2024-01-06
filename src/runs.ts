@@ -1,9 +1,9 @@
 import OpenAI from 'openai'
 import { OPENAI_API_ENDPOINT } from '.'
-import { AuthorizationAPIKey, OpenAIBetaAssistants, standard } from './helpers/headers'
-import { EnvAPIKey } from './helpers/env'
-import { Pager } from './helpers/pager'
-import { withQuery } from './helpers/query'
+import { AuthorizationAPIKey, OpenAIBetaAssistants, standard } from './internal/headers'
+import { EnvAPIKey } from './internal/env'
+import { Pager } from './internal/pager'
+import { withQuery } from './internal/query'
 
 export const createRun = async (thread_id: string, env: EnvAPIKey, params: OpenAI.Beta.Threads.RunCreateParams) => {
   const endpoint = `${OPENAI_API_ENDPOINT}/threads/${thread_id}/runs`
