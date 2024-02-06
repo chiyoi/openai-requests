@@ -1,29 +1,23 @@
 {
   "name": "@neko03/openai-requests",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "OpenAI API helpers compatible with Cloudflare Workers.",
-  "main": "src/index.ts",
+  "author": "chiyoi",
+  "license": "BSD-2-Clause",
+  "main": "index.ts",
+  "homepage": "https://github.com/chiyoi/openai-requests#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chiyoi/openai-requests.git"
   },
-  "keywords": [
-    "openai",
-    "workers"
-  ],
-  "author": "chiyoi",
-  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/chiyoi/openai-requests/issues"
   },
-  "homepage": "https://github.com/chiyoi/openai-requests#readme",
   "dependencies": {
-    "typescript": "^5.3.3",
     "openai": "^4.24.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231121.0",
-    "itty-router": "^4.0.25",
-    "wrangler": "^3.22.1"
+    "typescript": "^5.3.3",
+    "@cloudflare/workers-types": "^4.20231121.0"
   }
 }
